@@ -1,136 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Calendar App</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	
-	<style>
-        /* customizable summer item styling */
-        .summer-item {
-            color: #FFA500; /* Bright orange for sun */
-            font-size: 2.5em;
-            font-family: Arial, sans-serif;
-            text-shadow: 0 0 5px #FFD700; /* Add a glowing effect */
-        }
-    
-        .summer-item, .summer-item .inner {
-            animation-iteration-count: infinite;
-            animation-play-state: running;
-        }
-    
-        @keyframes items-fall {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(110vh); }
-        }
-    
-        @keyframes items-sway {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(50px); }
-        }
-    
-        .summer-item {
-            position: fixed;
-            top: -10%;
-            z-index: -1; /* Set to a lower value to be in the background */
-            -webkit-user-select: none;
-            user-select: none;
-            cursor: default;
-            animation-name: items-sway;
-            animation-duration: 3s;
-            animation-timing-function: ease-in-out;
-        }
-    
-        .summer-item .inner {
-            animation-duration: 10s;
-            animation-name: items-fall;
-            animation-timing-function: linear;
-        }
-    
-        /* Position and timing of each item */
-        .summer-item:nth-of-type(0) { left: 1%; animation-delay: 0s; }
-        .summer-item:nth-of-type(0) .inner { animation-delay: 0s; }
-    
-        .summer-item:nth-of-type(1) { left: 10%; animation-delay: 1s; }
-        .summer-item:nth-of-type(1) .inner { animation-delay: 1s; }
-    
-        .summer-item:nth-of-type(2) { left: 20%; animation-delay: 0.5s; }
-        .summer-item:nth-of-type(2) .inner { animation-delay: 6s; }
-    
-        .summer-item:nth-of-type(3) { left: 30%; animation-delay: 2s; }
-        .summer-item:nth-of-type(3) .inner { animation-delay: 4s; }
-    
-        .summer-item:nth-of-type(4) { left: 40%; animation-delay: 2s; }
-        .summer-item:nth-of-type(4) .inner { animation-delay: 2s; }
-    
-        .summer-item:nth-of-type(5) { left: 50%; animation-delay: 3s; }
-        .summer-item:nth-of-type(5) .inner { animation-delay: 8s; }
-    
-        .summer-item:nth-of-type(6) { left: 60%; animation-delay: 2s; }
-        .summer-item:nth-of-type(7) { left: 70%; animation-delay: 1s; }
-        .summer-item:nth-of-type(7) .inner { animation-delay: 2.5s; }
-    
-        .summer-item:nth-of-type(8) { left: 80%; animation-delay: 0s; }
-        .summer-item:nth-of-type(9) { left: 90%; animation-delay: 1.5s; }
-        .summer-item:nth-of-type(9) .inner { animation-delay: 3s; }
-    
-        .summer-item:nth-of-type(10) { left: 25%; animation-delay: 0s; }
-        .summer-item:nth-of-type(11) { left: 65%; animation-delay: 2.5s; }
-    </style>
-	<style type="text/css">
-		body {
-			background-color: #ffffff;
-			color: #000;
-		}
-		.table {
-			width:  90%;
-			margin:  0 auto;
-			text-align:  center;
-			color: #000;
-		}
-		.row input {
-			width:  100%;
-		}
-		.row input::placeholder {
-			font-style: italic;
-		}
-		.rowHead {
-			margin-bottom: 0.5em;
-		}
-		.col-1 {
-			min-width: 10%;
-			overflow: clip;
-			padding: 0 1%;
-			text-align: left;
-		}
-		.col-2 {
-			min-width: 20%;
-		}
-		.block {
-			text-align:  left;
-		}
-		#submitContainer {
-			display: flex;
-			justify-content:  center;
-			align-items:  center;
-		}
-		/*		input:{
-			color: #000;	
-		}*/
-	</style>
-	
-</head>
-<script type="text/javascript">
-	if (!(new Date().getMonth() === 11 || new Date().getMonth() === 0 || new Date().getMonth() === 1)) {
-		document.getElementById('snow-container').style.display = 'none';
-		document.getElementById('subtitle').innerHTML = "The placeholder subjects there are mine as an example :)";
-	}
-</script>
-
-<body>
-	<br>
-	<!-- Summer-themed items (e.g., suns, ice cream, beach balls) -->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calendar App</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📅</text></svg>"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <br />
     <div class="summer-item"><div class="inner">☀️</div></div>
     <div class="summer-item"><div class="inner">🍦</div></div>
     <div class="summer-item"><div class="inner">🎵</div></div>
@@ -138,320 +23,171 @@
     <div class="summer-item"><div class="inner">🍦</div></div>
     <div class="summer-item"><div class="inner">🎵</div></div>
 
-	<br>
-	<h1 style="text-align: center">Hi, put your subjects here!</h1>
-	<div style="text-align: center"><p id="subtitle">The placeholder subjects there are mine as an example :)</p></div>
-	<div style="display: flex; width: 100%; justify-content: center;">
-		<label style="margin-right: 5px; margin-bottom: 0;">Manual filling</label>
-		<input id="manual-fill" type="checkbox">
-	</div>
-	<br>
-	<div class="table" id="timetable">
-		<div class="row rowHead">
-			<div class="col-2"> </div>
-			<div class="col-1">Day 1</div>
-			<div class="col-1">Day 2</div>
-			<div class="col-1">Day 3</div>
-			<div class="col-1">Day 4</div>
-			<div class="col-1">Day 5</div>
-			<div class="col-1">Day 6</div>
-			<div class="col-1">Day 7</div>
-			<div class="col-1">Day 8</div>
-		</div>
-		<div class="row row1">
-			<div class="col-2 block"><p>Block 1 (8:00-8:55)</p></div>
-			<div class="col-1 day1 block7"><input placeholder="English"></div>
-			<div class="col-1 day2 block8"><input placeholder="TOK"></div>
-			<div class="col-1 day3 block1"><input placeholder="Math"></div>
-			<div class="col-1 day4 block2"><input placeholder="Biology"></div>
-			<div class="col-1 day5 block3"><input placeholder="Italian"></div>
-			<div class="col-1 day6 block4"><input placeholder="Physics"></div>
-			<div class="col-1 day7 block5"><input placeholder=""></div>
-			<div class="col-1 day8 block6"><input placeholder="WAC"></div>
-		</div>
-		<div class="row row2 row-manual">
-			<div class="col-2 block"><p>Block 2 (9:00-9:55)</p></div>
-			<div class="col-1 day1 block3"><input disabled placeholder="Italian"></div>
-			<div class="col-1 day2 block4"><input disabled placeholder="Physics"></div>
-			<div class="col-1 day3 block5"><input disabled placeholder=""></div>
-			<div class="col-1 day4 block6"><input disabled placeholder="WAC"></div>
-			<div class="col-1 day5 block7"><input disabled placeholder="English"></div>
-			<div class="col-1 day6 block8"><input disabled placeholder="TOK"></div>
-			<div class="col-1 day7 block1"><input disabled placeholder="Math"></div>
-			<div class="col-1 day8 block2"><input disabled placeholder="Biology"></div>
-		</div>
-		<div class="row row3 row-manual">
-			<div class="col-2 block"><p>Block 3 (10:00-10:55)</p></div>
-			<div class="col-1 day1 block1"><input disabled placeholder="Math"></div>
-			<div class="col-1 day2 block2"><input disabled placeholder="Biology"></div>
-			<div class="col-1 day3 block3"><input disabled placeholder="Italian"></div>
-			<div class="col-1 day4 block4"><input disabled placeholder="Physics"></div>
-			<div class="col-1 day5 block5"><input disabled placeholder=""></div>
-			<div class="col-1 day6 block6"><input disabled placeholder="WAC"></div>
-			<div class="col-1 day7 block7"><input disabled placeholder="English"></div>
-			<div class="col-1 day8 block8"><input disabled placeholder="TOK"></div>
-		</div>
-		<div class="row row4 row-manual">
-			<div class="col-2 block"><p>Block 4 (11:20-12:15)</p></div>
-			<div class="col-1 day1 block4"><input disabled placeholder="Physics"></div>
-			<div class="col-1 day2 block1"><input disabled placeholder="Math"></div>
-			<div class="col-1 day3 block2"><input disabled placeholder="Biology"></div>
-			<div class="col-1 day4 block3"><input disabled placeholder="Italian"></div>
-			<div class="col-1 day5 block4"><input disabled placeholder="Physics"></div>
-			<div class="col-1 day6 block1"><input disabled placeholder="Math"></div>
-			<div class="col-1 day7 block2"><input disabled placeholder="Biology"></div>
-			<div class="col-1 day8 block3"><input disabled placeholder="Italian"></div>
-		</div>
-		<div class="row row5 row-manual">
-			<div class="col-2 block"><p>Block 5 (12:20-13:45)</p></div>
-			<div class="col-1 day1 block5"><input disabled placeholder=""></div>
-			<div class="col-1 day2 block6"><input disabled placeholder="WAC"></div>
-			<div class="col-1 day3 block7"><input disabled placeholder="English"></div>
-			<div class="col-1 day4 block8"><input disabled placeholder="TOK"></div>
-			<div class="col-1 day5 block1"><input disabled placeholder="Math"></div>
-			<div class="col-1 day6 block2"><input disabled placeholder="Biology"></div>
-			<div class="col-1 day7 block3"><input disabled placeholder="Italian"></div>
-			<div class="col-1 day8 block4"><input disabled placeholder="Physics"></div>
-		</div>
-	</div>
-	<br>
-	<br>
-	<div id="submitContainer"><button id="submit">Download your CSV File</button></div>
-	<br>
-	<div style="margin-left: 2em">
-		<h3>How do I use this?</h3>
-		<ol>
-			<li>Fill in your subjects</li>
-			<li>Download the CSV File</li>
-			<li>Create a new Calendar in Google Calendar</li>
-			<li>In Google Calendar, go to Settings > Import & export</li>
-			<li>Upload your file, choose your new Calendar, and import it!</li>
-		</ol>
-	</div>
-	<br>
-	<!-- <div style="text-align: center"><p><b>For secondi: Don't forget to remove classes during trials!</b></p></div> -->
-	<div style="text-align: center"><p>The app is now updated until summer break 2025!</p></div>
-	<div style="text-align: center"><p>Let Cherif (+39 351 3168665) know if there are any problems :)</p></div>
-	<div style="text-align: center"><p>Continuing the work of Tín, we will miss you!</p></div>
-</body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <br />
+    <h1 style="text-align: center">Hi, put your subjects here!</h1>
+    <div style="text-align: center">
+      <p id="subtitle">
+        The placeholder subjects there are mine as an example :)
+      </p>
+    </div>
+    <div style="display: flex; width: 100%; justify-content: center">
+      <label style="margin-right: 5px; margin-bottom: 0">Manual filling</label>
+      <input id="manual-fill" type="checkbox" />
+    </div>
+    <br />
+    <div class="table" id="timetable">
+      <div class="row rowHead">
+        <div class="col-2"></div>
+        <div class="col-1">Day 1</div>
+        <div class="col-1">Day 2</div>
+        <div class="col-1">Day 3</div>
+        <div class="col-1">Day 4</div>
+        <div class="col-1">Day 5</div>
+        <div class="col-1">Day 6</div>
+        <div class="col-1">Day 7</div>
+        <div class="col-1">Day 8</div>
+      </div>
+      <div class="row row1">
+        <div class="col-2 block"><p>Block 1 (8:00-8:55)</p></div>
+        <div class="col-1 day1 block7"><input placeholder="English" /></div>
+        <div class="col-1 day2 block8"><input placeholder="TOK" /></div>
+        <div class="col-1 day3 block1"><input placeholder="Math" /></div>
+        <div class="col-1 day4 block2"><input placeholder="Chemistry" /></div>
+        <div class="col-1 day5 block3"><input placeholder="Italian" /></div>
+        <div class="col-1 day6 block4"><input placeholder="Physics" /></div>
+        <div class="col-1 day7 block5"><input placeholder="" /></div>
+        <div class="col-1 day8 block6"><input placeholder="Arabic" /></div>
+      </div>
+      <div class="row row2 row-manual">
+        <div class="col-2 block"><p>Block 2 (9:00-9:55)</p></div>
+        <div class="col-1 day1 block3">
+          <input disabled placeholder="Italian" />
+        </div>
+        <div class="col-1 day2 block4">
+          <input disabled placeholder="Physics" />
+        </div>
+        <div class="col-1 day3 block5"><input disabled placeholder="" /></div>
+        <div class="col-1 day4 block6">
+          <input disabled placeholder="Arabic" />
+        </div>
+        <div class="col-1 day5 block7">
+          <input disabled placeholder="English" />
+        </div>
+        <div class="col-1 day6 block8">
+          <input disabled placeholder="TOK" />
+        </div>
+        <div class="col-1 day7 block1">
+          <input disabled placeholder="Math" />
+        </div>
+        <div class="col-1 day8 block2">
+          <input disabled placeholder="Chemistry" />
+        </div>
+      </div>
+      <div class="row row3 row-manual">
+        <div class="col-2 block"><p>Block 3 (10:00-10:55)</p></div>
+        <div class="col-1 day1 block1">
+          <input disabled placeholder="Math" />
+        </div>
+        <div class="col-1 day2 block2">
+          <input disabled placeholder="Chemistry" />
+        </div>
+        <div class="col-1 day3 block3">
+          <input disabled placeholder="Italian" />
+        </div>
+        <div class="col-1 day4 block4">
+          <input disabled placeholder="Physics" />
+        </div>
+        <div class="col-1 day5 block5"><input disabled placeholder="" /></div>
+        <div class="col-1 day6 block6">
+          <input disabled placeholder="Arabic" />
+        </div>
+        <div class="col-1 day7 block7">
+          <input disabled placeholder="English" />
+        </div>
+        <div class="col-1 day8 block8">
+          <input disabled placeholder="TOK" />
+        </div>
+      </div>
+      <div class="row row4 row-manual">
+        <div class="col-2 block"><p>Block 4 (11:20-12:15)</p></div>
+        <div class="col-1 day1 block4">
+          <input disabled placeholder="Physics" />
+        </div>
+        <div class="col-1 day2 block1">
+          <input disabled placeholder="Math" />
+        </div>
+        <div class="col-1 day3 block2">
+          <input disabled placeholder="Chemistry" />
+        </div>
+        <div class="col-1 day4 block3">
+          <input disabled placeholder="Italian" />
+        </div>
+        <div class="col-1 day5 block4">
+          <input disabled placeholder="Physics" />
+        </div>
+        <div class="col-1 day6 block1">
+          <input disabled placeholder="Math" />
+        </div>
+        <div class="col-1 day7 block2">
+          <input disabled placeholder="Chemistry" />
+        </div>
+        <div class="col-1 day8 block3">
+          <input disabled placeholder="Italian" />
+        </div>
+      </div>
+      <div class="row row5 row-manual">
+        <div class="col-2 block"><p>Block 5 (12:20-13:45)</p></div>
+        <div class="col-1 day1 block5"><input disabled placeholder="" /></div>
+        <div class="col-1 day2 block6">
+          <input disabled placeholder="Arabic" />
+        </div>
+        <div class="col-1 day3 block7">
+          <input disabled placeholder="English" />
+        </div>
+        <div class="col-1 day4 block8">
+          <input disabled placeholder="TOK" />
+        </div>
+        <div class="col-1 day5 block1">
+          <input disabled placeholder="Math" />
+        </div>
+        <div class="col-1 day6 block2">
+          <input disabled placeholder="Chemistry" />
+        </div>
+        <div class="col-1 day7 block3">
+          <input disabled placeholder="Italian" />
+        </div>
+        <div class="col-1 day8 block4">
+          <input disabled placeholder="Physics" />
+        </div>
+      </div>
+    </div>
+    <br /><br />
+    <div id="submitContainer">
+      <button id="submit">Download your CSV File</button>
+    </div>
+    <br />
+    <div style="margin-left: 2em">
+      <h3>How do I use this?</h3>
+      <ol>
+        <li>Fill in your subjects</li>
+        <li>Download the CSV File</li>
+        <li>Create a new Calendar in Google Calendar</li>
+        <li>In Google Calendar, go to Settings > Import & export</li>
+        <li>Upload your file, choose your new Calendar, and import it!</li>
+      </ol>
+    </div>
+    <br />
+    <div style="text-align: center">
+      <p>The app is now updated until summer break 2026!</p>
+    </div>
+    <div style="text-align: center">
+      <p>Let Ashraf (+972 58 4900765) know if there are any problems :)</p>
+    </div>
+    <div style="text-align: center">
+      <p>Continuing the work of Cherif, we will miss you!</p>
+    </div>
 
-<script type="text/javascript">
-	// for future maintenance, change daycyc-ledayss
-	const daycycledays = [
-		"29/08/2024",
-"30/08/2024",
-"02/09/2024",
-"03/09/2024",
-"04/09/2024",
-"05/09/2024",
-"06/09/2024",
-"09/09/2024",
-"10/09/2024",
-"11/09/2024",
-"12/09/2024",
-"13/09/2024",
-"16/09/2024",
-"17/09/2024",
-"18/09/2024",
-"19/09/2024",
-"20/09/2024",
-"23/09/2024",
-"24/09/2024",
-"25/09/2024",
-"26/09/2024",
-"27/09/2024",
-"30/09/2024",
-"01/10/2024",
-"03/10/2024",
-"04/10/2024",
-"07/10/2024",
-"08/10/2024",
-"09/10/2024",
-"10/10/2024",
-"11/10/2024",
-"14/10/2024",
-"15/10/2024",
-"16/10/2024",
-"17/10/2024",
-"18/10/2024",
-"21/10/2024",
-"22/10/2024",
-"23/10/2024",
-"24/10/2024",
-"25/10/2024",
-"04/11/2024",
-"06/11/2024",
-"07/11/2024",
-"08/11/2024",
-"11/11/2024",
-"12/11/2024",
-"13/11/2024",
-"14/11/2024",
-"15/11/2024",
-"18/11/2024",
-"19/11/2024",
-"20/11/2024",
-"21/11/2024",
-"22/11/2024",
-"25/11/2024",
-"26/11/2024",
-"27/11/2024",
-"28/11/2024",
-"29/11/2024",
-"02/12/2024",
-"03/12/2024",
-"04/12/2024",
-"05/12/2024",
-"06/12/2024",
-"09/12/2024",
-"10/12/2024",
-"11/12/2024",
-"12/12/2024",
-"13/12/2024",
-"09/01/2025",
-"10/01/2025",
-"13/01/2025",
-"14/01/2025",
-"15/01/2025",
-"16/01/2025",
-"17/01/2025",
-"20/01/2025",
-"21/01/2025",
-"22/01/2025",
-"23/01/2025",
-"24/01/2025",
-"27/01/2025",
-"28/01/2025",
-"29/01/2025",
-"30/01/2025",
-"31/01/2025",
-"03/02/2025",
-"04/02/2025",
-"05/02/2025",
-"06/02/2025",
-"07/02/2025",
-"10/02/2025",
-"11/02/2025",
-"12/02/2025",
-"13/02/2025",
-"14/02/2025",
-"17/02/2025",
-"18/02/2025",
-"19/02/2025",
-"20/02/2025",
-"21/02/2025",
-"24/02/2025",
-"25/02/2025",
-"26/02/2025",
-"27/02/2025",
-"28/02/2025",
-"10/03/2025",
-"11/03/2025",
-"12/03/2025",
-"13/03/2025",
-"14/03/2025",
-"17/03/2025",
-"18/03/2025",
-"19/03/2025",
-"20/03/2025",
-"21/03/2025",
-"24/03/2025",
-"25/03/2025",
-"26/03/2025",
-"27/03/2025",
-"28/03/2025",
-"31/03/2025",
-"01/04/2025",
-"02/04/2025",
-"04/04/2025",
-"07/04/2025",
-"08/04/2025",
-"09/04/2025",
-"10/04/2025",
-"11/04/2025",
-"14/04/2025",
-"15/04/2025",
-"16/04/2025",
-"17/04/2025",
-"22/04/2025",
-"23/04/2025",
-"24/04/2025",
-"25/04/2025",
-"28/04/2025",
-"29/04/2025",
-"30/04/2025",
-"01/05/2025",
-"02/05/2025"
-	];
-
-const starts = ['8:00','9:00','10:00','11:20','12:20'];
-	const ends = ['8:55','9:55','10:55','12:15','13:45'];
-	const header = ['Subject', 'Start Date', 'Start Time', 'End Date', 'End Time', 'All Day Event', 'Location'];
-	let csv = header.join(',') + '\n';
-	let manualFill = document.querySelector('#manual-fill');
-	
-	manualFill.addEventListener('change', () => {
-		if (manualFill.checked)
-		document.querySelectorAll('.row .col-1 input').forEach((item) => {
-			item.disabled = false;
-		});
-		else	
-		document.querySelectorAll('.row-manual .col-1 input').forEach((item) => {
-			item.disabled = true;
-		});
-	})
-	
-	// auto-fill
-	for(let i = 1; i <= 8; i++) {
-		let subjectElement = document.querySelector('.row1 .block' + i);
-		let subjectInput = document.querySelector('.row1 .block' + i + ' input');
-		let subjectBlock = Array.from(subjectElement.classList).filter(word => word.slice(0, -1) == "block")[0];
-		subjectInput.addEventListener("input", () => {
-			if (manualFill.checked) return;
-			let subject = document.querySelector('.row1 .block' + i + ' input').value;
-			document.querySelectorAll('.row .' + subjectBlock + ' input').forEach((item) => {
-				item.value = subject;
-			});
-		});
-	}
-	
-	// read data from inputs
-	document.querySelector('#submit').addEventListener('click', function(){
-		let subjs = [];
-		
-		for(let i = 1; i <= 8; i++){
-			for(let j = 1; j <= 5; j++){
-				let query = '.row' + j + ' .day' + i + ' input'
-				subjs.push(document.querySelector(query).value)
-			}
-		}
-		
-		// cycling the timetable
-		for(let i = 0; i < daycycledays.length; i++){
-			// for future maintenace, change (i+x) (x is number fitted to calendar)
-			let count = (i + 0) % 8 + 1;
-			// console.log(count, daycycledays[i])
-			
-			// 5 is the number of blocks in a day
-			for(let subjcount = 0; subjcount < 5; subjcount++){
-				if(!subjs[(count - 1) * 5 + subjcount] == ""){
-					subjs_ind = (count - 1)*5 + subjcount;
-					subj = subjs[subjs_ind];
-					csv += [subj, daycycledays[i], starts[subjcount], daycycledays[i], ends[subjcount], false, ''].join(',');
-					csv += '\n';
-				}
-			}
-		}
-		
-		// export .csv file
-		var hiddenElement = document.createElement('a');
-		hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-		hiddenElement.target = '_blank';
-		
-		hiddenElement.download = 'calendarTest.csv';
-		hiddenElement.click();
-	})
-</script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js" defer></script>
+  </body>
 </html>

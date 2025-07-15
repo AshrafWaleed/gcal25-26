@@ -1,0 +1,61 @@
+body {
+    background-color: #ffffff;
+    color: #000;
+}
+.table {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    color: #000;
+}
+.row input {
+    width: 100%;
+}
+.row input::placeholder {
+    font-style: italic;
+}
+.rowHead {
+    margin-bottom: 0.5em;
+}
+.col-1 {
+    min-width: 10%;
+    overflow: clip;
+    padding: 0 1%;
+    text-align: left;
+}
+.col-2 {
+    min-width: 20%;
+}
+.block {
+    text-align: left;
+}
+#submitContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Summer item styling */
+.summer-item {
+    color: #FFA500;
+    font-size: 2.5em;
+    font-family: Arial, sans-serif;
+    text-shadow: 0 0 5px #FFD700;
+    position: fixed;
+    top: -10%;
+    z-index: -1;
+    user-select: none;
+    cursor: default;
+    animation: items-sway 3s ease-in-out infinite;
+}
+.summer-item .inner {
+    animation: items-fall 10s linear infinite;
+}
+@keyframes items-fall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(110vh); }
+}
+@keyframes items-sway {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(50px); }
+}
