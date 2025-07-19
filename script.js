@@ -195,7 +195,7 @@ for (let i = 1; i <= 8; i++) {
   });
 }
 
-// read data from inputs
+// read data from the inputs
 document.querySelector("#submit").addEventListener("click", function () {
   let csv = header.join(",") + "\n";
   let subjs = [];
@@ -209,7 +209,7 @@ document.querySelector("#submit").addEventListener("click", function () {
 
   // cycling the timetable
   for (let i = 0; i < daycycledays.length; i++) {
-    // for future maintenace, change (i+x) (x is number fitted to calendar)
+    // for future maintenance, change (i+x) (x is number fitted to calendar)
     let count = ((i + 0) % 8) + 1;
     // console.log(count, daycycledays[i])
 
