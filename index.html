@@ -30,9 +30,9 @@
         The placeholder subjects there are mine as an example :)
       </p>
     </div>
-    <div style="display: flex; width: 100%; justify-content: center">
-      <label style="margin-right: 5px; margin-bottom: 0">Manual filling</label>
-      <input id="manual-fill" type="checkbox" />
+    <div style="display: flex; width: 100%; justify-content: center; gap: 1em;">
+      <label style="margin-bottom: 0"><input id="manual-fill" type="checkbox" /> Manual filling</label>
+      <button id="clear-all" class="btn btn-sm btn-secondary">Clear All</button>
     </div>
     <br />
     <div class="table" id="timetable">
@@ -161,9 +161,12 @@
         </div>
       </div>
     </div>
-    <br /><br />
+    <br />
+    <div id="preview"></div>
+    <br />
     <div id="submitContainer">
-      <button id="submit">Download your CSV File</button>
+      <button id="submit" class="btn btn-primary mr-2">Download CSV File</button>
+      <button id="download-ics" class="btn btn-primary">Download ICS File</button>
     </div>
     <br />
     <div style="margin-left: 2em">
