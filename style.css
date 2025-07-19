@@ -35,6 +35,30 @@ body {
     align-items: center;
 }
 
+/* Preview table */
+#preview table {
+    width: 90%;
+    margin: 1em auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+#preview th, #preview td {
+    border: 1px solid #ccc;
+    padding: 4px;
+}
+
+@media (max-width: 600px) {
+    .row {
+        flex-wrap: wrap;
+    }
+    .row .col-1, .row .col-2 {
+        min-width: 100%;
+    }
+    #preview table {
+        font-size: 0.9em;
+    }
+}
+
 /* Summer item styling */
 .summer-item {
     color: #FFA500;

@@ -166,6 +166,67 @@ const header = [
 ];
 let manualFill = document.querySelector("#manual-fill");
 
+const STORAGE_KEY = "timetable-data";
+
+function updatePreview() {
+  const preview = document.getElementById("preview");
+  if (!preview) return;
+  let html = '<table><tr><th></th>';
+  for (let i = 1; i <= 8; i++) html += `<th>Day ${i}</th>`;
+  html += '</tr>';
+  for (let j = 1; j <= 5; j++) {
+    html += `<tr><th>Block ${j}</th>`;
+    for (let i = 1; i <= 8; i++) {
+      const val = document.querySelector(`.row${j} .day${i} input`).value;
+      html += `<td>${val || ''}</td>`;
+    }
+    html += '</tr>';
+  }
+  html += '</table>';
+  preview.innerHTML = html;
+}
+
+function saveData() {
+  const subjects = [];
+  for (let i = 1; i <= 8; i++) {
+    for (let j = 1; j <= 5; j++) {
+      const query = `.row${j} .day${i} input`;
+      subjects.push(document.querySelector(query).value);
+    }
+  }
+  const data = { manualFill: manualFill.checked, subjects };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  updatePreview();
+}
+
+function loadData() {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (!stored) return;
+  try {
+    const data = JSON.parse(stored);
+    manualFill.checked = data.manualFill || false;
+    manualFill.dispatchEvent(new Event("change"));
+    if (Array.isArray(data.subjects)) {
+      for (let i = 1; i <= 8; i++) {
+        for (let j = 1; j <= 5; j++) {
+          const val = data.subjects[(i - 1) * 5 + (j - 1)];
+          if (val !== undefined) {
+            document.querySelector(`.row${j} .day${i} input`).value = val;
+          }
+        }
+      }
+    }
+  } catch (e) {}
+  updatePreview();
+}
+
+window.addEventListener("load", loadData);
+
+document.querySelector("#clear-all").addEventListener("click", () => {
+  document.querySelectorAll(".row input").forEach((inp) => (inp.value = ""));
+  saveData();
+});
+
 manualFill.addEventListener("change", () => {
   if (manualFill.checked)
     document.querySelectorAll(".row .col-1 input").forEach((item) => {
@@ -175,6 +236,7 @@ manualFill.addEventListener("change", () => {
     document.querySelectorAll(".row-manual .col-1 input").forEach((item) => {
       item.disabled = true;
     });
+  saveData();
 });
 
 // auto-fill
@@ -192,20 +254,29 @@ for (let i = 1; i <= 8; i++) {
       .forEach((item) => {
         item.value = subject;
       });
+    saveData();
   });
 }
 
-// read data from the inputs
-document.querySelector("#submit").addEventListener("click", function () {
-  let csv = header.join(",") + "\n";
-  let subjs = [];
+document.querySelectorAll(".row input").forEach((inp) => {
+  inp.addEventListener("input", saveData);
+});
 
+// read data from the inputs
+function gatherSubjects() {
+  let arr = [];
   for (let i = 1; i <= 8; i++) {
     for (let j = 1; j <= 5; j++) {
-      let query = ".row" + j + " .day" + i + " input";
-      subjs.push(document.querySelector(query).value);
+      let query = `.row${j} .day${i} input`;
+      arr.push(document.querySelector(query).value);
     }
   }
+  return arr;
+}
+
+document.querySelector("#submit").addEventListener("click", function () {
+  let csv = header.join(",") + "\n";
+  let subjs = gatherSubjects();
 
   // cycling the timetable
   for (let i = 0; i < daycycledays.length; i++) {
@@ -240,3 +311,36 @@ document.querySelector("#submit").addEventListener("click", function () {
   hiddenElement.download = "calendarTest.csv";
   hiddenElement.click();
 });
+
+document.querySelector("#download-ics").addEventListener("click", function () {
+  let subjs = gatherSubjects();
+  let ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Schedule//EN"];
+  for (let i = 0; i < daycycledays.length; i++) {
+    let count = ((i + 0) % 8) + 1;
+    for (let subjcount = 0; subjcount < 5; subjcount++) {
+      const idx = (count - 1) * 5 + subjcount;
+      if (subjs[idx] !== "") {
+        const subj = subjs[idx];
+        const date = daycycledays[i];
+        const dtStart = toICS(date, starts[subjcount]);
+        const dtEnd = toICS(date, ends[subjcount]);
+        ics.push("BEGIN:VEVENT");
+        ics.push("SUMMARY:" + subj);
+        ics.push("DTSTART:" + dtStart);
+        ics.push("DTEND:" + dtEnd);
+        ics.push("END:VEVENT");
+      }
+    }
+  }
+  ics.push("END:VCALENDAR");
+  var link = document.createElement("a");
+  link.href = "data:text/calendar;charset=utf-8," + encodeURI(ics.join("\r\n"));
+  link.download = "schedule.ics";
+  link.click();
+});
+
+function toICS(dateStr, timeStr) {
+  const [dd, mm, yyyy] = dateStr.split("/");
+  const [h, m] = timeStr.split(":");
+  return `${yyyy}${mm}${dd}T${h.padStart(2, "0")}${m.padStart(2, "0")}00`;
+}
