@@ -164,7 +164,6 @@ const header = [
   "All Day Event",
   "Location",
 ];
-let csv = header.join(",") + "\n";
 let manualFill = document.querySelector("#manual-fill");
 
 manualFill.addEventListener("change", () => {
@@ -198,6 +197,7 @@ for (let i = 1; i <= 8; i++) {
 
 // read data from inputs
 document.querySelector("#submit").addEventListener("click", function () {
+  let csv = header.join(",") + "\n";
   let subjs = [];
 
   for (let i = 1; i <= 8; i++) {
@@ -215,9 +215,9 @@ document.querySelector("#submit").addEventListener("click", function () {
 
     // 5 is the number of blocks in a day
     for (let subjcount = 0; subjcount < 5; subjcount++) {
-      if (!subjs[(count - 1) * 5 + subjcount] == "") {
-        subjs_ind = (count - 1) * 5 + subjcount;
-        subj = subjs[subjs_ind];
+      if (subjs[(count - 1) * 5 + subjcount] !== "") {
+        const subjs_ind = (count - 1) * 5 + subjcount;
+        const subj = subjs[subjs_ind];
         csv += [
           subj,
           daycycledays[i],
