@@ -171,18 +171,18 @@ const STORAGE_KEY = "timetable-data";
 function updatePreview() {
   const preview = document.getElementById("preview");
   if (!preview) return;
-  let html = '<table><tr><th></th>';
+  let html = "<table><tr><th></th>";
   for (let i = 1; i <= 8; i++) html += `<th>Day ${i}</th>`;
-  html += '</tr>';
+  html += "</tr>";
   for (let j = 1; j <= 5; j++) {
     html += `<tr><th>Block ${j}</th>`;
     for (let i = 1; i <= 8; i++) {
       const val = document.querySelector(`.row${j} .day${i} input`).value;
-      html += `<td>${val || ''}</td>`;
+      html += `<td>${val || ""}</td>`;
     }
-    html += '</tr>';
+    html += "</tr>";
   }
-  html += '</table>';
+  html += "</table>";
   preview.innerHTML = html;
 }
 
@@ -273,44 +273,6 @@ function gatherSubjects() {
   }
   return arr;
 }
-
-document.querySelector("#submit").addEventListener("click", function () {
-  let csv = header.join(",") + "\n";
-  let subjs = gatherSubjects();
-
-  // cycling the timetable
-  for (let i = 0; i < daycycledays.length; i++) {
-    // for future maintenance, change (i+x) (x is number fitted to calendar)
-    let count = ((i + 0) % 8) + 1;
-    // console.log(count, daycycledays[i])
-
-    // 5 is the number of blocks in a day
-    for (let subjcount = 0; subjcount < 5; subjcount++) {
-      if (subjs[(count - 1) * 5 + subjcount] !== "") {
-        const subjs_ind = (count - 1) * 5 + subjcount;
-        const subj = subjs[subjs_ind];
-        csv += [
-          subj,
-          daycycledays[i],
-          starts[subjcount],
-          daycycledays[i],
-          ends[subjcount],
-          false,
-          "",
-        ].join(",");
-        csv += "\n";
-      }
-    }
-  }
-
-  // export .csv file
-  var hiddenElement = document.createElement("a");
-  hiddenElement.href = "data:text/csv;charset=utf-8," + encodeURI(csv);
-  hiddenElement.target = "_blank";
-
-  hiddenElement.download = "calendarTest.csv";
-  hiddenElement.click();
-});
 
 document.querySelector("#download-ics").addEventListener("click", function () {
   let subjs = gatherSubjects();
